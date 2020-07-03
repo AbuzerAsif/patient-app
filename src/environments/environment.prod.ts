@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+    production: true,
+    apiBaseUrl: 'https://nameless-chamber-98582.herokuapp.com/api',
 };
