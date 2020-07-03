@@ -1,14 +1,119 @@
+<!-- <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>Patient App</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>add</mat-icon>
+    </button>
+</mat-toolbar> -->
+
+<mat-toolbar color="primary">
+    <span>Patient List</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>add</mat-icon>
+    </button>
+</mat-toolbar>
+
 <div class="main-content">
-    <ngx-datatable
+    <!-- <ngx-datatable
         class="material"
-        [rows]="rows"
-        [loadingIndicator]="loadingIndicator"
+        [rows]="patients"
+        [loadingIndicator]="busy"
         [columns]="columns"
         [columnMode]="ColumnMode.force"
         [headerHeight]="50"
         [footerHeight]="50"
         rowHeight="auto"
-        [reorderable]="reorderable"
+        [reorderable]="true"
     >
+    </ngx-datatable> -->
+
+    <ngx-datatable
+        #table
+        class="material expandable"
+        [columnMode]="ColumnMode.force"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [loadingIndicator]="busy"
+        [rowHeight]="'auto'"
+        [rows]="patients"
+    >
+        <!-- Row Detail Template -->
+        <ngx-datatable-row-detail [rowHeight]="'auto'">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                <div class="row-detail-section">
+                    <div class="detail-item">
+                        <span class="detail-item-label">Nok Name</span>: <span>{{ row.nokName }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-item-label">Nok Relationship</span>:
+                        <span>{{ row.nokRelationshipCode }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-item-label">Nok Address</span>:
+                        <span>
+                            {{ row.nokAddressLine1 }}
+                            {{ row.nokAddressLine2 }}
+                            {{ row.nokAddressLine3 }}
+                            {{ row.nokAddressLine4 }}
+                        </span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-item-label">Nok Post Code</span>: <span>{{ row.nokPostcode }}</span>
+                    </div>
+                </div>
+            </ng-template>
+        </ngx-datatable-row-detail>
+        <!-- Column Templates -->
+        <ngx-datatable-column
+            [width]="50"
+            [resizeable]="false"
+            [sortable]="false"
+            [draggable]="false"
+            [canAutoResize]="false"
+        >
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <span
+                    class="expand-row"
+                    [class.datatable-icon-right]="!expanded"
+                    [class.datatable-icon-down]="expanded"
+                    title="Expand/Collapse Row"
+                    (click)="toggleExpandRow(row)"
+                >
+                </span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column prop="id"></ngx-datatable-column>
+        <ngx-datatable-column prop="pasNumber"></ngx-datatable-column>
+        <ngx-datatable-column prop="forenames"></ngx-datatable-column>
+        <ngx-datatable-column prop="surname"></ngx-datatable-column>
+        <ngx-datatable-column prop="dateOfBirth">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                <div>{{ value | date: 'mediumDate' }}</div>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column prop="sexCode" name="Sex">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+                <div *ngIf="value === SexCode.MALE">Male</div>
+                <div *ngIf="value === SexCode.FEMALE">Female</div>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column prop="homeTelephoneNumber"></ngx-datatable-column>
+        <ngx-datatable-column name="Actions">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <button mat-icon-button aria-label="Edit Patient" (click)="edit(row)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button aria-label="Delete Patient" (click)="delete(row)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </ng-template>
+        </ngx-datatable-column>
     </ngx-datatable>
 </div>
