@@ -92,7 +92,7 @@
             <mat-form-field>
                 <mat-label>Nok Postcode</mat-label>
                 <input matInput name="nokPostcode" [(ngModel)]="patient.nokPostcode" #nokPostcode="ngModel" required />
-                <mat-error *ngIf="nokRelationshipCode.hasError('required')">Nok Postcode is required.</mat-error>
+                <mat-error *ngIf="nokPostcode.hasError('required')">Nok Postcode is required.</mat-error>
             </mat-form-field>
         </div>
 
@@ -103,10 +103,10 @@
                     matInput
                     name="nokAddressLine1"
                     [(ngModel)]="patient.nokAddressLine1"
-                    #nokPostcode="ngModel"
+                    #nokAddressLine1="ngModel"
                     required
                 />
-                <mat-error *ngIf="nokPostcode.hasError('required')">Nok Address Line 1 is required.</mat-error>
+                <mat-error *ngIf="nokAddressLine1.hasError('required')">Nok Address Line 1 is required.</mat-error>
             </mat-form-field>
 
             <mat-form-field>
