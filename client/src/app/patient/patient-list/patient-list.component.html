@@ -15,12 +15,7 @@
 <mat-toolbar color="primary">
     <span>Patient List</span>
     <span class="toolbar-spacer"></span>
-    <button
-        mat-icon-button
-        aria-label="Add Patient"
-        matTooltip="Add Patient"
-        [matTooltipPosition]="'above'"
-    >
+    <button mat-icon-button aria-label="Add Patient" matTooltip="Add Patient" [matTooltipPosition]="'above'">
         <mat-icon>add</mat-icon>
     </button>
 </mat-toolbar>
@@ -75,7 +70,8 @@
                     class="expand-row"
                     [class.datatable-icon-right]="!expanded"
                     [class.datatable-icon-down]="expanded"
-                    title="Expand/Collapse Row"
+                    matTooltip="{{ expanded ? 'Hide Details' : 'Show Details' }}"
+                    [matTooltipPosition]="'above'"
                     (click)="toggleExpandRow(row)"
                 >
                 </span>
