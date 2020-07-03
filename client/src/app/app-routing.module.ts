@@ -6,6 +6,10 @@ const routes: Routes = [
         path: 'patient',
         loadChildren: './patient/patient.module#PatientModule',
     },
+    {
+        path: '**',
+        redirectTo: 'patient'
+    }
 ];
 
 @NgModule({

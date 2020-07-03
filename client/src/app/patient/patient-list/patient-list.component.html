@@ -14,26 +14,18 @@
 
 <mat-toolbar color="primary">
     <span>Patient List</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <span class="toolbar-spacer"></span>
+    <button
+        mat-icon-button
+        aria-label="Add Patient"
+        matTooltip="Add Patient"
+        [matTooltipPosition]="'above'"
+    >
         <mat-icon>add</mat-icon>
     </button>
 </mat-toolbar>
 
 <div class="main-content">
-    <!-- <ngx-datatable
-        class="material"
-        [rows]="patients"
-        [loadingIndicator]="busy"
-        [columns]="columns"
-        [columnMode]="ColumnMode.force"
-        [headerHeight]="50"
-        [footerHeight]="50"
-        rowHeight="auto"
-        [reorderable]="true"
-    >
-    </ngx-datatable> -->
-
     <ngx-datatable
         #table
         class="material expandable"
