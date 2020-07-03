@@ -1,26 +1,26 @@
-<!-- <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span>Patient App</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>add</mat-icon>
-    </button>
-</mat-toolbar> -->
-
 <mat-toolbar color="primary">
+    <button mat-icon-button>
+        <mat-icon>mood</mat-icon>
+    </button>
     <span>Patient List</span>
     <span class="toolbar-spacer"></span>
-    <button mat-icon-button aria-label="Add Patient" matTooltip="Add Patient" [matTooltipPosition]="'above'">
+    <button
+        mat-icon-button
+        aria-label="Add Patient"
+        matTooltip="Add Patient"
+        [matTooltipPosition]="'above'"
+        (click)="add()"
+    >
         <mat-icon>add</mat-icon>
     </button>
 </mat-toolbar>
 
 <div class="main-content">
+    <mat-form-field class="search">
+        <mat-label>Search by id, pas number, forenames, surname</mat-label>
+        <input matInput name="pasNumber" [(ngModel)]="searchText" (ngModelChange)="search()" />
+    </mat-form-field>
+
     <ngx-datatable
         #table
         class="material expandable"
@@ -95,10 +95,22 @@
         <ngx-datatable-column prop="homeTelephoneNumber"></ngx-datatable-column>
         <ngx-datatable-column name="Actions">
             <ng-template let-row="row" ngx-datatable-cell-template>
-                <button mat-icon-button aria-label="Edit Patient" (click)="edit(row)">
+                <button
+                    class="edit-action"
+                    mat-icon-button
+                    aria-label="Edit Patient"
+                    color="primary"
+                    (click)="edit(row)"
+                >
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button aria-label="Delete Patient" (click)="delete(row)">
+                <button
+                    class="delete-action"
+                    mat-icon-button
+                    aria-label="Delete Patient"
+                    color="warn"
+                    (click)="delete(row)"
+                >
                     <mat-icon>delete</mat-icon>
                 </button>
             </ng-template>

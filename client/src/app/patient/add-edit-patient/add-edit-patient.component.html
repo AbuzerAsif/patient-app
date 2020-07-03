@@ -1,0 +1,134 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button aria-label="Back button" (click)="navigateToListPage()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span>Patient {{ patient.pasNumber }}</span>
+</mat-toolbar>
+
+<div class="main-content">
+    <form #ngForm="ngForm" (ngSubmit)="save(ngForm)">
+        <div class="form-row">
+            <mat-form-field>
+                <mat-label>Pas Number</mat-label>
+                <input matInput name="pasNumber" [(ngModel)]="patient.pasNumber" #pasNumber="ngModel" required />
+                <mat-error *ngIf="pasNumber.hasError('required')">Pas Number is required.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Forenames</mat-label>
+                <input matInput name="forenames" [(ngModel)]="patient.forenames" #forenames="ngModel" required />
+                <mat-error *ngIf="forenames.hasError('required')">Forenames is required.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Surname</mat-label>
+                <input matInput name="surname" [(ngModel)]="patient.surname" #surname="ngModel" required />
+                <mat-error *ngIf="surname.hasError('required')">Surname is required.</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="form-row">
+            <mat-form-field>
+                <mat-label>Date of Birth</mat-label>
+                <input
+                    matInput
+                    [matDatepicker]="picker"
+                    name="dateOfBirth"
+                    [(ngModel)]="patient.dateOfBirth"
+                    #dateOfBirth="ngModel"
+                    [max]="maxDate"
+                    required
+                />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="dateOfBirth.hasError('required')">Date of Birth is required.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Sex</mat-label>
+                <mat-select name="sexCode" [(ngModel)]="patient.sexCode" #sexCode="ngModel" required>
+                    <mat-option [value]="SexCode.MALE">Male</mat-option>
+                    <mat-option [value]="SexCode.FEMALE">Female</mat-option>
+                </mat-select>
+                <mat-error *ngIf="sexCode.hasError('required')">Sex is required.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Home Telephone Number</mat-label>
+                <input
+                    matInput
+                    name="homeTelephoneNumber"
+                    [(ngModel)]="patient.homeTelephoneNumber"
+                    #homeTelephoneNumber="ngModel"
+                    required
+                />
+                <mat-error *ngIf="homeTelephoneNumber.hasError('required')">
+                    Home Telephone Number is required.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="form-row">
+            <mat-form-field>
+                <mat-label>Nok Name</mat-label>
+                <input matInput name="nokName" [(ngModel)]="patient.nokName" #nokName="ngModel" required />
+                <mat-error *ngIf="nokName.hasError('required')">Home Telephone Number is required.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Nok Relationship Code</mat-label>
+                <input
+                    matInput
+                    name="nokRelationshipCode"
+                    [(ngModel)]="patient.nokRelationshipCode"
+                    #nokRelationshipCode="ngModel"
+                    required
+                />
+                <mat-error *ngIf="nokRelationshipCode.hasError('required')">
+                    Home Telephone Number is required.
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Nok Postcode</mat-label>
+                <input matInput name="nokPostcode" [(ngModel)]="patient.nokPostcode" #nokPostcode="ngModel" required />
+                <mat-error *ngIf="nokRelationshipCode.hasError('required')">Nok Postcode is required.</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="form-row">
+            <mat-form-field>
+                <mat-label>Nok Address Line 1</mat-label>
+                <input
+                    matInput
+                    name="nokAddressLine1"
+                    [(ngModel)]="patient.nokAddressLine1"
+                    #nokPostcode="ngModel"
+                    required
+                />
+                <mat-error *ngIf="nokPostcode.hasError('required')">Nok Address Line 1 is required.</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Nok Address Line 2</mat-label>
+                <input matInput name="nokAddressLine2" [(ngModel)]="patient.nokAddressLine2" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Nok Address Line 3</mat-label>
+                <input matInput name="nokAddressLine3" [(ngModel)]="patient.nokAddressLine3" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Nok Address Line 4</mat-label>
+                <input matInput name="nokAddressLine4" [(ngModel)]="patient.nokAddressLine4" />
+            </mat-form-field>
+        </div>
+
+        <div class="action-buttons">
+            <button type="submit" mat-raised-button color="primary" [disabled]="busySave">
+                {{ busySave ? 'Saving...' : 'Save' }}
+            </button>
+        </div>
+    </form>
+</div>

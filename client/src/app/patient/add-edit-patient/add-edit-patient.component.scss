@@ -1,0 +1,30 @@
+.main-content {
+    padding: 24px;
+
+    .form-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        mat-form-field {
+            width: 100%;
+        }
+
+        @media screen and (min-width: 992px) {
+            flex-direction: row;
+            margin-bottom: 16px;
+
+            mat-form-field {
+                margin: 0 16px;
+            }
+        }
+    }
+
+    .action-buttons {
+        text-align: right;
+
+        @media screen and (min-width: 992px) {
+            margin: 0 16px;
+        }
+    }
+}
