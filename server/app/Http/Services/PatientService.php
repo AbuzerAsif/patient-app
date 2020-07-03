@@ -6,9 +6,20 @@ use App\Models\Patient;
 
 class PatientService
 {
-    public function all()
+    public function all($attributes)
     {
-        return Patient::all();
+        $search = $attributes['search'];
+
+        return Patient::where('id', $search)
+            ->orWhere('pasNumber', 'LIKE', "%$search%")
+            ->orWhere('forenames', 'LIKE', "%$search%")
+            ->orWhere('surname', 'LIKE', "%$search%")
+            ->get();
+    }
+
+    public function details($id)
+    {
+        return Patient::where('id', $id)->first();
     }
 
     public function create($attributes)

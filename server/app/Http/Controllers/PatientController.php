@@ -18,9 +18,9 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return $this->patientService->all();
+        return $this->patientService->all($request->all());
     }
 
     /**
@@ -32,6 +32,17 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         return $this->patientService->create($request->all());
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return $this->patientService->details($id);
     }
 
     /**

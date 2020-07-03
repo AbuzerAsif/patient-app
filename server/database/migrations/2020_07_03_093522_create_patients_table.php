@@ -24,9 +24,9 @@ class CreatePatientsTable extends Migration
             $table->string('nokName');
             $table->string('nokRelationshipCode');
             $table->string('nokAddressLine1');
-            $table->string('nokAddressLine2');
-            $table->string('nokAddressLine3');
-            $table->string('nokAddressLine4');
+            $table->string('nokAddressLine2')->nullable();
+            $table->string('nokAddressLine3')->nullable();
+            $table->string('nokAddressLine4')->nullable();
             $table->string('nokPostcode');
             $table->timestamp('createdAt')->nullable();
             $table->timestamp('updatedAt')->nullable();
