@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    apiBaseUrl: 'http://localhost:8000/api'
+    apiBaseUrl: 'https://nameless-chamber-98582.herokuapp.com/api'
 };
 
 /*
